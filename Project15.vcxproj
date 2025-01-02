@@ -129,11 +129,13 @@
   <ItemGroup>
     <ClCompile Include="DoublyLinkedList.cpp" />
     <ClCompile Include="Exception.cpp" />
+    <ClCompile Include="Fraction.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DoublyLinkedList.h" />
     <ClInclude Include="Exception.h" />
+    <ClInclude Include="Fraction.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
