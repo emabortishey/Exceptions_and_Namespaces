@@ -3,6 +3,10 @@
 
 void DoublyLinkedList::append(int value)
 {
+    if (typeid(value).name() != "int")
+    {
+        throw WrongTydeid("\n\nValue isn't having the same type id as a Node::data! Value couln't be added into the list.\n\n");
+    }
     // создание динамической переменной заполняемой
     // значением которое добавится в конец списка
     Node* newNode = new Node(value);

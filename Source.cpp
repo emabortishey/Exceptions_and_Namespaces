@@ -16,5 +16,14 @@ int main()
 		cout << obj.what();
 	}
 
+	try
+	{
+		test.append('a');
+	}
+	catch(WrongTydeid obj)
+	{
+		cout << obj.what();
+	}
+
 	return 0;
 }
