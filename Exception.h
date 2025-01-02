@@ -3,8 +3,7 @@
 
 using namespace std;
 
-class Exception
-{
+class Exception {
 public:
 	Exception() {};
 
