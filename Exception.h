@@ -7,6 +7,14 @@ class Exception {
 public:
 	Exception() {};
 
-	string what() { return "\n\nSome error occurred!\n\n"; }
+	virtual string what() { return "\n\nSome error occurred!\n\n"; }
 };
 
+class ContainerIsEmpty : public Exception
+{
+	string msg;
+public:
+	explicit ContainerIsEmpty(string msg_P) : msg{ msg_P } { };
+
+	virtual string what() override { return msg; }
+};

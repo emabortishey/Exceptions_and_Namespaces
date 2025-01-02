@@ -1,4 +1,5 @@
 #include "DoublyLinkedList.h"
+#include "Exception.h"
 
 void DoublyLinkedList::append(int value)
 {
@@ -30,7 +31,8 @@ void DoublyLinkedList::removeLast()
 {
     if (head == nullptr)
     {   // если список пуст, удаление последнего элемента невозможно
-        cout << "Список пуст. Удаление невозможно.\n";
+        throw ContainerIsEmpty("\nIt's impossible to remove the last element, container is already empty.\n");
+
         return;
     }
     else if (head == tail)
