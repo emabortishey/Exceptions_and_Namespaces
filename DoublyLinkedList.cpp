@@ -31,6 +31,7 @@ void DoublyLinkedList::removeLast()
 {
     if (head == nullptr)
     {   // если список пуст, удаление последнего элемента невозможно
+        // поэтому происходит выброс исключения
         throw ContainerIsEmpty("\nIt's impossible to remove the last element, container is already empty.\n");
 
         return;
