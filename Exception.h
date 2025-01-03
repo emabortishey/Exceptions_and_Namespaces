@@ -50,6 +50,7 @@ class RunTimeError : public Exception
 {
 	string msg;
 public:
+	RunTimeError() : msg{ "\nSome runtime error just occurred!\n" } { };
 	explicit RunTimeError(string msg_P) : msg{ msg_P } { };
 
 	virtual string what() override { return msg; }
@@ -57,26 +58,27 @@ public:
 
 class OverFlowError : public RunTimeError
 {
-	string msg;
+	string msg_1;
 public:
-	explicit OverFlowError(string msg_P) : msg{ msg_P } { };
+	explicit OverFlowError(string msg_P) : msg_1{ msg_P } { };
 
-	virtual string what() override { return msg; }
+	virtual string what() { return msg_1; }
 };
 
 class UnderFlowError : public RunTimeError
 {
-	string msg;
+	string msg_1;
 public:
-	explicit UnderFlowError(string msg_P) : msg{ msg_P } { };
+	explicit UnderFlowError(string msg_P) : msg_1{ msg_P } { };
 
-	virtual string what() override { return msg; }
+	virtual string what() { return msg_1; }
 };
 
 class LogicError : public Exception
 {
 	string msg;
 public:
+	LogicError() : msg{ "\nSome logic error just occurred!\n" } { };
 	explicit LogicError(string msg_P) : msg{ msg_P } { };
 
 	virtual string what() override { return msg; }
@@ -84,45 +86,46 @@ public:
 
 class InvalidArgument : public LogicError
 {
-	string msg;
+	string msg_1;
 public:
-	explicit InvalidArgument(string msg_P) : msg{ msg_P } { };
+	explicit InvalidArgument(string msg_P) : msg_1{ msg_P } { };
 
-	virtual string what() override { return msg; }
+	virtual string what() { return msg_1; }
 };
 
 class OutOfRange : public LogicError
 {
+	string msg_1;
+public:
+	explicit OutOfRange(string msg_P) : msg_1{ msg_P } { };
+
+	virtual string what() { return msg_1; }
+};
+
+class FileErrorr : public Exception
+{
 	string msg;
 public:
-	explicit OutOfRange(string msg_P) : msg{ msg_P } { };
+	FileErrorr() : msg{ "\nSome file error just occurred!\n" } { };
+	explicit FileErrorr(string msg_P) : msg{ msg_P } { };
 
 	virtual string what() override { return msg; }
 };
 
-class FileError : public Exception
+class OpenFileErrorr : public FileErrorr
 {
-	string msg;
+	string msg_1;
 public:
-	explicit FileError(string msg_P) : msg{ msg_P } { };
+	explicit OpenFileErrorr(string msg_P) : msg_1{ msg_P } { };
 
-	virtual string what() override { return msg; }
+	virtual string what() { return msg_1; }
 };
 
-class OpenFileError : public FileError
+class CloseFileErrorr : public FileErrorr
 {
-	string msg;
+	string msg_1;
 public:
-	explicit OpenFileError(string msg_P) : msg{ msg_P } { };
+	explicit CloseFileErrorr(string msg_P) : msg_1{ msg_P } { };
 
-	virtual string what() override { return msg; }
-};
-
-class CloseFileError : public FileError
-{
-	string msg;
-public:
-	explicit CloseFileError(string msg_P) : msg{ msg_P } { };
-
-	virtual string what() override { return msg; }
+	virtual string what() { return msg_1; }
 };
