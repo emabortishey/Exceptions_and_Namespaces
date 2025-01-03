@@ -27,10 +27,10 @@ public:
     void removeLast();
 
     // Печать списка
-    void print() const;
+    void print() const noexcept;
 
     // Поиск элемента в списке
-    bool search(int value) const;
+    bool search(int value) const noexcept;
 
     // Деструктор для освобождения памяти
     ~DoublyLinkedList();

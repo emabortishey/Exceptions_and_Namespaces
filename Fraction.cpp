@@ -1,6 +1,6 @@
 #include "Fraction.h"
 
-void user_fraction::Fraction::sum(int sumn, int sumd)
+void user_fraction::Fraction::sum(int sumn, int sumd) noexcept
 {
 	if (den != sumd)
 	{
@@ -14,7 +14,7 @@ void user_fraction::Fraction::sum(int sumn, int sumd)
 
 	num += sumn;
 }
-void user_fraction::Fraction::sub(int subn, int subd)
+void user_fraction::Fraction::sub(int subn, int subd) noexcept
 {
 	if (den != subd)
 	{
@@ -28,7 +28,7 @@ void user_fraction::Fraction::sub(int subn, int subd)
 
 	num -= subn;
 }
-void user_fraction::Fraction::div(int divn, int divd)
+void user_fraction::Fraction::div(int divn, int divd) noexcept
 {
 	int buff;
 
@@ -39,7 +39,7 @@ void user_fraction::Fraction::div(int divn, int divd)
 	num *= divn;
 	den *= divd;
 }
-void user_fraction::Fraction::mult(int multn, int multd)
+void user_fraction::Fraction::mult(int multn, int multd) noexcept
 {
 	num *= multn;
 	den *= multd;

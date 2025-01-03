@@ -3,20 +3,22 @@
 
 using namespace std;
 
+// ğîäèòåëüñêèé êëàññ îøèáêè áåç àòğèáóòîâ
 class Exception {
 public:
-	Exception() {};
-
-	virtual string what() { return "\n\nSome error occurred!\n\n"; }
+	virtual string what() noexcept { return "\n\nSome error occurred!\n\n"; }
 };
 
+/////// ÊËÀÑÑÛ ÄËß ÏÅĞÂÎÃÎ ÇÀÄÀÍÈß Ñ 22 ÂÑÒĞÅ×È /////
+// 
+/////// ÍÀ×ÀËÎ
 class ContainerIsEmpty : public Exception
 {
 	string msg;
 public:
 	explicit ContainerIsEmpty(string msg_P) : msg{ msg_P } { };
 
-	virtual string what() override { return msg; }
+	virtual string what() noexcept override { return msg; }
 };
 
 class WrongTydeid : public Exception
@@ -25,17 +27,16 @@ class WrongTydeid : public Exception
 public:
 	explicit WrongTydeid(string msg_P) : msg{ msg_P } { };
 
-	virtual string what() override { return msg; }
+	virtual string what() noexcept override { return msg; }
 };
 
-class FileError : public Exception
-{
-	string msg;
-public:
-	explicit FileError(string msg_P) : msg{ msg_P } { };
+/////// ÊÎÍÅÖ
 
-	virtual string what() override { return msg; }
-};
+
+
+/// ÎÑÒÀËÜÍÛÅ ÄÎ×ÅĞÍÈÅ ÊËÀÑÑÛ ÄËß ÂÒÎĞÎÃÎ ÇÀÄÀÍÈß 22 ÂÑÒĞÅ×È ///
+
+// ÍÅÂÎÇÌÎÆÍÎÑÒÈ ÏĞÈÂÅÄÅÍÈß ÓÊÀÇÀÒÅËÜ\ÑÑÛËÊÓ Â ÎÏĞÅÄÅËÅÍÍÛÉ ÒÈÏ
 
 class BadCast : public Exception
 {
@@ -43,8 +44,10 @@ class BadCast : public Exception
 public:
 	explicit BadCast(string msg_P) : msg{ msg_P } { };
 
-	virtual string what() override { return msg; }
+	virtual string what() noexcept override { return msg; }
 };
+
+// ÎØÈÁÊÈ ÂÎÇÍÈÊØÈÅ ÂÎ ÂĞÅÌß ÇÀÏÓÑÊÀ ÏĞÎÃĞÀÌÌÛ
 
 class RunTimeError : public Exception
 {
@@ -53,8 +56,10 @@ public:
 	RunTimeError() : msg{ "\nSome runtime error just occurred!\n" } { };
 	explicit RunTimeError(string msg_P) : msg{ msg_P } { };
 
-	virtual string what() override { return msg; }
+	virtual string what() noexcept override { return msg; }
 };
+
+// ÂÛÕÎÄ ÇÀ ÂÅĞÕÍŞŞ ÃĞÀÍÈÖÓ ÄÈÀÏÀÇÎÍÀ. ÄÎ×ÅĞÍÈÉ ÎÒ ĞÀÍÒÀÉÌÀ
 
 class OverFlowError : public RunTimeError
 {
@@ -62,8 +67,10 @@ class OverFlowError : public RunTimeError
 public:
 	explicit OverFlowError(string msg_P) : msg_1{ msg_P } { };
 
-	virtual string what() { return msg_1; }
+	virtual string what() noexcept override { return msg_1; }
 };
+
+// ÂÛÕÎÄ ÇÀ ÍÈÆÍŞŞ ÃĞÀÍÈÖÓ ÄÈÀÏÀÇÎÍÀ. ÄÎ×ÅĞÍÈÉ ÎÒ ĞÀÍÒÀÉÌÀ
 
 class UnderFlowError : public RunTimeError
 {
@@ -71,8 +78,10 @@ class UnderFlowError : public RunTimeError
 public:
 	explicit UnderFlowError(string msg_P) : msg_1{ msg_P } { };
 
-	virtual string what() { return msg_1; }
+	virtual string what() noexcept override { return msg_1; }
 };
+
+// ËÎÃÈ×ÅÑÊÈÅ ÎØÈÁÊÈ
 
 class LogicError : public Exception
 {
@@ -81,8 +90,10 @@ public:
 	LogicError() : msg{ "\nSome logic error just occurred!\n" } { };
 	explicit LogicError(string msg_P) : msg{ msg_P } { };
 
-	virtual string what() override { return msg; }
+	virtual string what() noexcept override { return msg; }
 };
+
+// ÍÅÊÎĞĞÅÊÒÍÛÉ ÏÎËÓ×ÅÍÛÉ ÀĞÃÓÌÅÍÒ. ÄÎ×ÅĞÍÈÉ ÎÒ ËÎÃÈ×. ÎØÈÁÎÊ
 
 class InvalidArgument : public LogicError
 {
@@ -90,8 +101,10 @@ class InvalidArgument : public LogicError
 public:
 	explicit InvalidArgument(string msg_P) : msg_1{ msg_P } { };
 
-	virtual string what() { return msg_1; }
+	virtual string what() noexcept override { return msg_1; }
 };
+
+// ÇÍÀ×ÅÍÈÅ ÂÍÅ ÄÈÀÏÀÇÎÍÀ ÊÎÍÒÅÉÍÅĞÀ. ÄÎ×ÅĞÍÈÉ ÎÒ ËÎÃÈ×. ÎØÈÁÎÊ
 
 class OutOfRange : public LogicError
 {
@@ -99,33 +112,39 @@ class OutOfRange : public LogicError
 public:
 	explicit OutOfRange(string msg_P) : msg_1{ msg_P } { };
 
-	virtual string what() { return msg_1; }
+	virtual string what() noexcept override { return msg_1; }
 };
 
-class FileErrorr : public Exception
+// ĞÀÁÎÒÀ Ñ ÔÀÉËÀÌÈ
+
+class FileError : public Exception
 {
 	string msg;
 public:
-	FileErrorr() : msg{ "\nSome file error just occurred!\n" } { };
-	explicit FileErrorr(string msg_P) : msg{ msg_P } { };
+	FileError() : msg{ "\nSome file error just occurred!\n" } { };
+	explicit FileError(string msg_P) : msg{ msg_P } { };
 
-	virtual string what() override { return msg; }
+	virtual string what() noexcept override { return msg; }
 };
 
-class OpenFileErrorr : public FileErrorr
+// ÎØÈÁÊÀ ÏĞÈ ÎÒÊĞÛÒÈÈ ÔÀÉËÀ. ÄÎ×ÅĞÍÈÉ ÎÒ ÊËÀÑÑÀ ÔÀÉËÎÂÛÕ ÎØÈÁÎÊ
+
+class OpenFileError : public FileError
 {
 	string msg_1;
 public:
-	explicit OpenFileErrorr(string msg_P) : msg_1{ msg_P } { };
+	explicit OpenFileError(string msg_P) : msg_1{ msg_P } { };
 
-	virtual string what() { return msg_1; }
+	virtual string what() noexcept override { return msg_1; }
 };
 
-class CloseFileErrorr : public FileErrorr
+// ÎØÈÁÊÀ ÏĞÈ ÇÀÊĞÛÒÈÈ ÔÀÉËÀ. ÄÎ×ÅĞÍÈÉ ÎÒ ÊËÀÑÑÀ ÔÀÉËÎÂÛÕ ÎØÈÁÎÊ
+
+class CloseFileError : public FileError
 {
 	string msg_1;
 public:
-	explicit CloseFileErrorr(string msg_P) : msg_1{ msg_P } { };
+	explicit CloseFileError(string msg_P) : msg_1{ msg_P } { };
 
-	virtual string what() { return msg_1; }
+	virtual string what() noexcept override { return msg_1; }
 };

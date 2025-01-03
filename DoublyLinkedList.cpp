@@ -1,7 +1,7 @@
 #include "DoublyLinkedList.h"
 #include "Exception.h"
 
-void DoublyLinkedList::append(int value)
+void DoublyLinkedList::append(int value) 
 {
     if (typeid(value).name() != "int")
     {
@@ -65,7 +65,7 @@ void DoublyLinkedList::removeLast()
 }
 
 // Печать списка
-void DoublyLinkedList::print() const
+void DoublyLinkedList::print() const noexcept
 {
     // буферный элемент для пробежки по элементам
     Node* current = head;
@@ -81,7 +81,7 @@ void DoublyLinkedList::print() const
     }
 }
 
-bool DoublyLinkedList::search(int value) const
+bool DoublyLinkedList::search(int value) const noexcept
 {
     // элемент для пробега по элементам
     Node* current = head;
